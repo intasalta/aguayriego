@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Necesidades de Agua y Riego para 20 Localidades de Salta y Jujuy - INTA</title>
+  <link rel="stylesheet" href="css/modern.css">
+  <link rel="icon" type="image/x-icon" href="images/prosusnoa.ico">
+</head>
+<body>
+  
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-top-inner">
+        <div class="branding-group">
+          <div class="branding-logos">
+            <a href="index.html"><img src="images/inta70px.gif" alt="INTA" class="logo-inta"></a>
+            <a href="index.html"><img src="images/log_prosusnoa_peq.jpg" alt="ProSusNOA" class="logo-prosus"></a>
+          </div>
+          <div class="branding-titles">
+            <h1>Instituto Nacional de Tecnología Agropecuaria</h1>
+            <div class="subtitle">EEA Salta · Centro Regional NOA · Prosusnoa</div>
+          </div>
+        </div>
+        <div class="header-badge">Salta y Jujuy · Riego y Necesidades de Agua</div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <div class="nav-container">
+        <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Abrir menú">☰ Menú</button>
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class=" active">Inicio</a></li>
+          <li class="nav-item"><a href="indice/indice.html" class="">Índice</a></li>
+          <li class="nav-item"><a href="intro/introduccion.html" class="">Introducción</a></li>
+          <li class="nav-item"><a href="instructivo/instructivo.html" class="">Instructivo</a></li>
+          <li class="nav-item"><a href="lluvias/lluvias.html" class="">Año Prom. Lluvias</a></li>
+          <li class="nav-item"><a href="Seco/seco.html" class="">Año Seco</a></li>
+          <li class="nav-item"><a href="soft/Software.html" class="">CROPWAT - FAO</a></li>
+          <li class="nav-item"><a href="Tema/temalluvia.html" class="">Mi Amiga Lluvia</a></li>
+          <li class="nav-item"><a href="creditos/Creditos.html" class="">Créditos</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <main class="page-wrapper">
+    <section class="hero-banner">
+      <div class="hero-content">
+        <span class="hero-badge">Estudio Agronómico e Hídrico · INTA EEA Salta</span>
+        <h1 class="hero-title">Necesidades de Agua y Riego para 20 Localidades de Salta y Jujuy</h1>
+        <p class="hero-motto">«... una llave para el progreso de los regadíos»</p>
+        <p class="hero-desc">
+          Guía integral de planificación agronómica, balances de evapotranspiración (Penman-Monteith) y requerimientos netos y brutos de riego para los principales cultivos del NOA, comparando escenarios de <strong>Año Promedio de Lluvias</strong> y <strong>Año Seco</strong>.
+        </p>
+        <div class="hero-author-box">
+          <strong>Autor:</strong> Carlos Yáñez — <em>Ing. Agr. UBA, M.Sc. on Irrigation (CIHEAM, IAM Bari, Italia)</em><br>
+          <span style="color: #94a3b8; font-size: 0.8rem;">INTA EEA Salta · Centro Regional NOA · Prosusnoa</span>
+        </div>
+      </div>
+      <div class="hero-illustration">
+        <img src="images/llave_orig400x.jpg" alt="Llave para el progreso de los regadíos">
+      </div>
+    </section>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon blue">📍</div>
+        <div>
+          <div class="stat-number">20</div>
+          <div class="stat-label">Localidades Analizadas</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green">🌱</div>
+        <div>
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Planes de Cultivo</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon amber">⚖️</div>
+        <div>
+          <div class="stat-number">2</div>
+          <div class="stat-label">Escenarios (Promedio vs Seco)</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">💧</div>
+        <div>
+          <div class="stat-number">CROPWAT</div>
+          <div class="stat-label">Modelo FAO Penman-Monteith</div>
+        </div>
+      </div>
+    </div>
+
+    <section class="explorer-section" id="localidades">
+      <div class="explorer-header">
+        <div class="explorer-title">
+          <h2>Explorador Interactivo de Localidades</h2>
+          <p>Busca por municipio, provincia o cultivo para acceder a los balances hídricos detallados.</p>
+        </div>
+        <div class="explorer-controls">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="localitySearch" class="search-input" placeholder="Buscar por localidad (ej: Cerrillos, Perico) o cultivo (ej: Tabaco, Alfalfa)...">
+          </div>
+          <div class="filter-pills">
+            <button type="button" class="filter-pill active" data-filter="all">Todas (20)</button>
+            <button type="button" class="filter-pill" data-filter="salta">Salta (16)</button>
+            <button type="button" class="filter-pill" data-filter="jujuy">Jujuy (4)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="localities-grid" id="localitiesGrid">
+        
+        <div class="locality-card" data-name="Abra Pampa" data-province="jujuy" data-crops="Habas (secano), Habas (con riego), Alfalfa">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Abra Pampa</div>
+              <span class="province-badge province-jujuy">Jujuy</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 22° 49' S - 65° 50' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 3.484 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Habas (secano), Habas (con riego), Alfalfa
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/AbraPampa/abrapampa.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/AbraPampa/abrapampa.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Betania" data-province="salta" data-crops="Mango, Tomate (bajo cubierta)">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Betania</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 24° 42' S - 65° 08' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 870 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> VARIOS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Mango, Tomate (bajo cubierta)
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Betania/betania.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Betania/betania.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Cachi" data-province="salta" data-crops="Pimiento p/ pimentón, Frutales de carozo, Frutales secos, Alfalfa">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Cachi</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 07' S - 66° 12' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 2.280 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Pimiento p/ pimentón, Frutales de carozo, Frutales secos, Alfalfa
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Cachi/cachi.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Cachi/cachi.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Cerrillos" data-province="salta" data-crops="Alfalfa, Tabaco, Frutales de carozo, Maíz primavera, Poroto, Trigo">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Cerrillos</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 24° 54' S - 65° 27' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 1.253 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Alfalfa, Tabaco, Frutales de carozo, Maíz primavera, Poroto, Trigo
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/cerrillos/cerrillos.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Cerrillos/cerrillos.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Coronel Moldes" data-province="salta" data-crops="Tabaco, Frutales de carozo, Maíz primavera, Olivo">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Coronel Moldes</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 17' S - 65° 30' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 1.104 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Tabaco, Frutales de carozo, Maíz primavera, Olivo
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Cnel_Moldes/cnel_moldes.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/CnelMoldes/cnelmoldes.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Colonia Santa Rosa" data-province="salta" data-crops="Citrus 1, Citrus 2, Banana, Mango, Tomate (bajo cubierta)">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Colonia Santa Rosa</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 23° 37' S - 64° 22' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 322 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Citrus 1, Citrus 2, Banana, Mango, Tomate (bajo cubierta)
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/col_sta_rosa/col_sta_rosa.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/ColStaRosa/ColStaRosa.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="El Carril" data-province="salta" data-crops="Tabaco, Frutales de carozo, Maíz primavera, Poroto, Trigo">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">El Carril</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 06' S - 65° 30' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 1.170 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Tabaco, Frutales de carozo, Maíz primavera, Poroto, Trigo
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/ElCarril/elcarril.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/ElCarril/ElCarril.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="El Galpón" data-province="salta" data-crops="Arroz, Maíz 1, Maíz 2, Alfalfa">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">El Galpón</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 14' S - 64° 28' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 425 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> AAEE - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Arroz, Maíz 1, Maíz 2, Alfalfa
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Elgalpon/elgalpon.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/ElGalpon/ElGalpon.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="General Güemes" data-province="salta" data-crops="Caña de azúcar, Tabaco, Tomate estación">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">General Güemes</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 24° 41' S - 65° 02' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 734 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> SMN - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Caña de azúcar, Tabaco, Tomate estación
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Guemes/Guemes.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Guemes/Guemes.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Joaquín V. González" data-province="salta" data-crops="Alfalfa, Algodón, Maíz estación, Soja, Poroto, Trigo">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Joaquín V. González</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 05' S - 64° 11' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 378 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> SMN - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Alfalfa, Algodón, Maíz estación, Soja, Poroto, Trigo
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/jvgonzalez/jvgonzalez.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/JVGonzalez/JVGonzalez.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="La Moraleja" data-province="salta" data-crops="Citrus, Soja, Poroto, Algodón, Tomate estación">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">La Moraleja</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 24° 31' S - 64° 01' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 360 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Citrus, Soja, Poroto, Algodón, Tomate estación
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/LaMoraleja/lamoraleja.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/LaMoraleja/LaMoraleja.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Monterrico" data-province="jujuy" data-crops="Tabaco, Frutales de carozo">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Monterrico</div>
+              <span class="province-badge province-jujuy">Jujuy</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 24° 27' S - 65° 06' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 830 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> SMN - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Tabaco, Frutales de carozo
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Monte_Rico/monterico.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/MonteRico/MonteRico.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Morillo" data-province="salta" data-crops="Alfalfa, Pasturas secano, Soja, Algodón, Tomate estación">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Morillo</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 23° 28' S - 62° 53' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 220 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> VARIOS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Alfalfa, Pasturas secano, Soja, Algodón, Tomate estación
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Morillo/morillo.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Morillo/Morillo.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="San Ramón de la Nueva Orán" data-province="salta" data-crops="Caña de azúcar, Citrus, Banana, Pimiento (bajo cubierta)">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">San Ramón de la Nueva Orán</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 23° 08' S - 64° 20' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 362 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> SMN - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Caña de azúcar, Citrus, Banana, Pimiento (bajo cubierta)
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Oran/oran.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Oran/Oran.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Perico" data-province="jujuy" data-crops="Tabaco, Alfalfa, Frutales de carozo, Cebolla 1, Cebolla 2">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Perico</div>
+              <span class="province-badge province-jujuy">Jujuy</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 24° 19' S - 65° 07' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 936 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> SMN - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Tabaco, Alfalfa, Frutales de carozo, Cebolla 1, Cebolla 2
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Perico/perico.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Perico/Perico.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Pichanal" data-province="salta" data-crops="Soja secano, Poroto secano, Maíz secano, Algodón secano">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Pichanal</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 23° 19' S - 64° 24' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 306 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> VARIOS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Soja secano, Poroto secano, Maíz secano, Algodón secano
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Pichanal/pichanal.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Pichanal/Pichanal.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Rosario de la Frontera" data-province="salta" data-crops="Citrus, Soja, Poroto, Alfalfa">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Rosario de la Frontera</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 48' S - 64° 57' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 791 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Citrus, Soja, Poroto, Alfalfa
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/rdelafrontera/rdelafrontera.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/RdelaFrontera/Rdelafrontera.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="San Carlos" data-province="salta" data-crops="Vid, Alfalfa, Pimiento p/ pimentón">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">San Carlos</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 53' S - 65° 57' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 1.710 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Vid, Alfalfa, Pimiento p/ pimentón
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/sancarlos/sancarlos.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/SanCarlos/SanCarlos.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Tartagal" data-province="salta" data-crops="Soja secano, Poroto secano, Maíz secano, Algodón secano">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Tartagal</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 22° 32' S - 63° 49' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 502 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> SMN - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Soja secano, Poroto secano, Maíz secano, Algodón secano
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Tartagal/tartagal.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Tartagal/Tartagal.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+        <div class="locality-card" data-name="Tolloche" data-province="salta" data-crops="Alfalfa, Maíz con riego, Poroto secano, Soja secano">
+          <div>
+            <div class="locality-card-header">
+              <div class="locality-name">Tolloche</div>
+              <span class="province-badge province-salta">Salta</span>
+            </div>
+            <div class="locality-meta">
+              <div>📍 <strong>Coord:</strong> 25° 31' S - 63° 33' O</div>
+              <div>⛰️ <strong>Altitud:</strong> 276 m s.n.m.</div>
+              <div>⛅ <strong>Estación:</strong> GPS - INTA</div>
+            </div>
+            <div class="locality-crops">
+              <strong>Cultivos evaluados:</strong><br>
+              Alfalfa, Maíz con riego, Poroto secano, Soja secano
+            </div>
+          </div>
+          <div class="locality-actions">
+            <a href="lluvias/Tolloche/tolloche.html" class="btn-loc-action btn-loc-prom" title="Ver Año Promedio">💧 Año Promedio</a>
+            <a href="Seco/Tolloche/Tolloche.html" class="btn-loc-action btn-loc-seco" title="Ver Año Seco">☀️ Año Seco</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font-size: 1.35rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.25rem;">Secciones de la Publicación</h2>
+      <div class="sections-grid">
+        <div class="section-card">
+          <div class="section-card-icon">📖</div>
+          <div class="section-card-title">Introducción</div>
+          <div class="section-card-desc">Marco histórico del regadío, alcances del estudio, principios de eficiencia y consideraciones agronómicas de aplicación.</div>
+          <a href="intro/introduccion.html" class="section-card-link">Leer Introducción →</a>
+        </div>
+        <div class="section-card">
+          <div class="section-card-icon">📋</div>
+          <div class="section-card-title">Instructivo</div>
+          <div class="section-card-desc">Guía detallada para interpretar los parámetros hídricos, láminas netas, intervalos entre riegos y dotaciones brutas.</div>
+          <a href="instructivo/instructivo.html" class="section-card-link">Ver Instructivo →</a>
+        </div>
+        <div class="section-card">
+          <div class="section-card-icon">💧</div>
+          <div class="section-card-title">Año Promedio en Lluvias</div>
+          <div class="section-card-desc">Matriz completa de las 20 localidades y sus cultivos bajo régimen pluviométrico medio histórico.</div>
+          <a href="lluvias/lluvias.html" class="section-card-link">Ir a Año Promedio →</a>
+        </div>
+        <div class="section-card">
+          <div class="section-card-icon">☀️</div>
+          <div class="section-card-title">Año Seco</div>
+          <div class="section-card-desc">Cálculo de necesidades de riego en condiciones de sequía y restricción pluviométrica.</div>
+          <a href="Seco/seco.html" class="section-card-link">Ir a Año Seco →</a>
+        </div>
+        <div class="section-card">
+          <div class="section-card-icon">💻</div>
+          <div class="section-card-title">Software CROPWAT - FAO</div>
+          <div class="section-card-desc">Documentación sobre la metodología de la FAO, ecuaciones de Penman-Monteith y software aplicado.</div>
+          <a href="soft/Software.html" class="section-card-link">Ver CROPWAT →</a>
+        </div>
+        <div class="section-card">
+          <div class="section-card-icon">🎨</div>
+          <div class="section-card-title">Mi Amiga Lluvia (Arte y Ciencia)</div>
+          <div class="section-card-desc">Poema y reflexión institucional sobre la integración de la sensibilidad artística y la ciencia agronómica.</div>
+          <a href="Tema/temalluvia.html" class="section-card-link">Ver Poema y Reflexión →</a>
+        </div>
+        <div class="section-card">
+          <div class="section-card-icon">👥</div>
+          <div class="section-card-title">Créditos</div>
+          <div class="section-card-desc">Reconocimientos institucionales, estaciones meteorológicas colaboradoras y equipo técnico.</div>
+          <a href="creditos/Creditos.html" class="section-card-link">Ver Créditos →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>INTA - Estación Experimental Agropecuaria Salta</h3>
+          <p><strong>Necesidades de Agua y Riego para 20 Localidades de Salta y Jujuy</strong></p>
+          <p>Una herramienta clave para la planificación agronómica, eficiencia hídrica y diseño de regadíos en el Noroeste Argentino.</p>
+          <p>Autor: <em>Ing. Agr. Carlos Yáñez (M.Sc. on Irrigation, CIHEAM IAM Bari, Italia)</em></p>
+        </div>
+        <div class="footer-col">
+          <h3>Navegación Rápida</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="intro/introduccion.html">Introducción General</a></li>
+            <li><a href="lluvias/lluvias.html">Año Promedio de Lluvias</a></li>
+            <li><a href="Seco/seco.html">Año Seco</a></li>
+            <li><a href="soft/Software.html">Modelo CROPWAT FAO</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Institucional</h3>
+          <ul class="footer-links">
+            <li><a href="creditos/Creditos.html">Créditos Técnicos</a></li>
+            <li><a href="Tema/temalluvia.html">Mi Amiga Lluvia (Arte y Ciencia)</a></li>
+            <li><a href="https://www.argentina.gob.ar/inta" target="_blank" rel="noopener">Portal Oficial INTA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© INTA - Instituto Nacional de Tecnología Agropecuaria · Prosusnoa</div>
+        <div>Publicación adaptada y modernizada (HTML5 / Sin video)</div>
+      </div>
+    </div>
+  </footer>
+  <button class="back-to-top" id="backToTop" title="Volver arriba">↑</button>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
